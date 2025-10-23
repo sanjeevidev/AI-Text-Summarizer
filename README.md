@@ -1,31 +1,33 @@
-# 📘 DocuChat
+# 📝 AI Text Summarizer
 
-**Chat with your PDFs — powered by LangChain, OpenAI, and Streamlit.**
+[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/) 
+[![Streamlit](https://img.shields.io/badge/streamlit-1.30-green)](https://streamlit.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> DocuChat is an AI-powered web application that allows you to interact with your PDF documents using natural language.  
-Simply upload a PDF, ask questions, and get accurate, context-aware answers — just like chatting with a human who’s read the entire file.
+**Summarize any text quickly — powered by LangChain, Hugging Face, and Streamlit.**
+
+> AI Text Summarizer is a web application that generates concise, meaningful summaries from long text inputs. Simply paste your text and get a compressed version in seconds — all 100% local with no external API calls.
 
 ---
 
 ## 🚀 Features
 
-- 🧾 **PDF Upload:** Easily upload any PDF document.
-- 🔍 **Smart Retrieval:** Automatically extracts and indexes text for fast, accurate lookup.
-- 🤖 **AI Chat:** Uses GPT-4 (via LangChain) to answer questions conversationally.
-- 🧠 **Context Memory:** Remembers previous questions for natural multi-turn conversations.
-- ⚙️ **LangChain + RAG:** Built with Retrieval-Augmented Generation using FAISS vector search.
-- 🌐 **Streamlit UI:** Intuitive and modern chat-style interface.
+- 📄 **Text Input:** Paste any text or document content to summarize.  
+- 🤖 **AI Summarization:** Uses Hugging Face transformer models with LangChain pipeline integration.  
+- ⚡ **Quick Summary:** Generate a shorter summary with fewer words.  
+- 📊 **Word Count & Compression Metrics:** See the number of words in the original and summary and the compression ratio.  
+- 🗑 **Clear Output:** Reset the summary and input text easily.  
+- 🌐 **Streamlit UI:** Modern, clean interface with two-column layout and custom styling.  
 
 ---
 
 ## 🧠 How It Works
 
-1. **Upload** a PDF file.  
-2. **Extract & Split:** Text is extracted and split into manageable chunks.  
-3. **Embed:** Each chunk is converted into numerical vectors using OpenAI embeddings.  
-4. **Store:** Embeddings are stored in a FAISS vector database for similarity search.  
-5. **Retrieve & Answer:** When you ask a question, LangChain retrieves relevant chunks and GPT-4 generates an accurate response.  
-6. **Remember:** Conversation history is preserved using LangChain’s memory module.
+1. **Load Model:** Hugging Face’s `distilbart-cnn-12-6` model is loaded into a LangChain pipeline.  
+2. **Input Text:** User enters text into the Streamlit text area.  
+3. **Summarization:** The model generates a summary via a direct pipeline call for reliability.  
+4. **Display Output:** Shows the summarized text along with word counts and compression metrics.  
+5. **Quick or Full Summary:** Option to generate shorter or detailed summaries.  
 
 ---
 
@@ -34,12 +36,11 @@ Simply upload a PDF, ask questions, and get accurate, context-aware answers — 
 | Component | Description |
 |------------|-------------|
 | **Frontend** | Streamlit |
-| **LLM** | OpenAI GPT-4 / GPT-3.5 |
-| **Framework** | LangChain |
-| **Vector Store** | FAISS |
-| **Embeddings** | OpenAIEmbeddings |
-| **PDF Parsing** | PyPDFLoader |
-| **Memory** | ConversationBufferMemory |
+| **LLM Integration** | LangChain + Hugging Face Pipeline |
+| **Model** | `sshleifer/distilbart-cnn-12-6` (transformers) |
+| **Backend Framework** | Python |
+| **Caching** | Streamlit `st.cache_resource` and `st.cache_data` for performance |
+| **Environment Variables** | Optional for further model configurations |
 
 ---
 
@@ -47,8 +48,8 @@ Simply upload a PDF, ask questions, and get accurate, context-aware answers — 
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/yourusername/docuchat.git
-cd docuchat
+git clone https://github.com/sanjeevidev/AI-Text-Summarizer.git
+cd AI-Text-Summarizer
 ```
 
 ### 2️⃣ Create a virtual environment
@@ -62,15 +63,7 @@ source venv/bin/activate  # (use venv\Scripts\activate on Windows)
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Add your OpenAI API key
-
-Create a file named .env in the project root:
-
-``` bash
-OPENAI_API_KEY=your_openai_api_key_here
-```
-
-### 5️⃣ Run the app
+### 4️⃣ Run the app
 ``` bash
 streamlit run app.py
 ```
@@ -84,42 +77,33 @@ Then open your browser at:
 ``` requirements.txt ```
 
 - streamlit
-- langchain
-- langchain-community
-- langchain-openai
-- openai
-- faiss-cpu
-- tiktoken
-- python-dotenv
-- PyPDF2
+- langchain-huggingface
+- transformers
+- torch
 
 ---
 
-## 📚 Example
+## 📚 Example Usage
 
-### You: What is LangChain?
-DocuChat: LangChain is a framework for developing applications powered by large language models. It enables chaining together LLMs, prompts, and retrievers to build complex reasoning systems.
+- Paste an article, essay, or paragraph into the input box.
+- Click 🎯 Generate Summary for a detailed summary or 🔥 Quick Summary for a shorter one.
+- See the summary appear instantly along with word count and compression stats.
 
 ---
 
 ## 💡 Future Enhancements
 
-- 🗂 Support for multiple PDFs
+- 📌 Support file uploads (PDF, DOCX, TXT).
+- 🧠 Integration with larger models for better summarization quality.
+- 🌈 Advanced UI improvements for multi-document summarization.
+- 💾 Option to download summarized text.
 
-- 💬 Persistent chat history
-
-- 🧾 Source citations (showing which page info came from)
-
-- 🧠 Local model support (Ollama, GPT4All)
-
-- 🌈 UI improvements with Streamlit Chat Elements
- 
- ---
+---
 
 ## 👨‍💻 Author
 
 Developed by [Sanjeevi Kumar V](https://github.com/sanjeevidev/) \
-Built with ❤️ using LangChain, OpenAI, and Streamlit.
+Built with ❤️ using LangChain, Hugging Face, and Streamlit.
 
 ---
 
@@ -129,4 +113,4 @@ This project is licensed under the MIT License — feel free to use and modify.
 
 ---
 
-> “DocuChat — your intelligent document companion.”
+> “AI Text Summarizer — compress long text into concise insights in seconds.”
